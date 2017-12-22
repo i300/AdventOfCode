@@ -36,6 +36,6 @@ def getPosition(n):
 
 	return (x, y)
 
-posInput = getPosition(277678)
-
-print abs(posInput[0]) + abs(posInput[1])
+if __name__ == "__main__":
+	posInput = getPosition(277678)
+	print abs(posInput[0]) + abs(posInput[1])
