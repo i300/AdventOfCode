@@ -41,6 +41,7 @@ with open("four/input.txt", "r") as log_file:
             for minute in range(last_fell_asleep.minute, event_time.minute):
                 guards[current_guard][minute] += 1
 
+    # strategy 1
     # calculate guard who slept most
     longest_sleeper = tuple()
     longest_sleeper_time = 0
@@ -54,4 +55,21 @@ with open("four/input.txt", "r") as log_file:
     # calculate minute most slept
     minute_most_slept = longest_sleeper[1].index(max(longest_sleeper[1]))
 
+    print("== Strategy 1 ==")
     print("Longest Sleeping Guard: {}\nMinute Most Slept: {}\nProduct: {}".format(longest_sleeper[0], minute_most_slept, longest_sleeper[0] * minute_most_slept))
+    
+    # strategy 2
+    # calculate guard with most frequent time asleep
+    chosen_guard = tuple()
+    max_minute_freq = 0
+    for guard in guards.keys():
+        ss = guards[guard] # sleep schedule
+        guard_max_minute_freq = max(ss)
+        if (guard_max_minute_freq > max_minute_freq):
+            most_frequent_minute = ss.index(max(ss))
+            max_minute_freq = guard_max_minute_freq
+            chosen_guard = (guard, most_frequent_minute)
+    
+    print("== Strategy 2 ==")
+    print("Longest Sleeping Guard: {}\nMinute Most Slept: {}\nProduct: {}".format(chosen_guard[0], chosen_guard[1], chosen_guard[0] * chosen_guard[1]))
+    
