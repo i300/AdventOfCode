@@ -34,11 +34,29 @@ with open("three/input.txt", "r") as claims_file:
                 else:
                     grid[x][y] = "X"
 
-    # check grid for overlaps
+    # check grid for overlaps and calculate non-overlapping sizes for each id
     overlaps = 0
+    sizes = {}
     for column in grid.keys():
         for cell in grid[column].values():
             if (cell == "X"):
                 overlaps += 1
+            else:
+                if (cell not in sizes):
+                    sizes[cell] = 1
+                else:
+                    sizes[cell] += 1
+
+    # find the non-overlapping claim
+    non_overlapping_claim = ""
+    for claim in parsed_claims:
+        claim_id = claim[0]
+        width = int(claim[2][0])
+        height = int(claim[2][1])
+
+        if (claim_id in sizes and sizes[claim_id] == width * height):
+            non_overlapping_claim = claim_id
+            break
     
     print("Overlaps: {}".format(overlaps))
+    print("Non-Overlapping ID: {}".format(non_overlapping_claim))
