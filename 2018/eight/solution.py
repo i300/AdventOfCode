@@ -5,20 +5,13 @@ class Data():
     def __init__(self, data):
         self.data = data
 
-    def get_data(self):
-        return self.data[self.index]
-
     def get_next_data(self):
         data = self.data[self.index]
-        self.inc_index()
+        self.index += 1
         return data
 
-    def get_index(self):
-        return self.index
-    
-    def inc_index(self):
-        self.index += 1
-        return self.index
+    def reset(self):
+        self.index = 0
 
 def calc_metadata_sum(data):
     num_subnodes = data.get_next_data()
@@ -64,6 +57,6 @@ if __name__ == "__main__":
     sum_metadata = calc_metadata_sum(data_class)
     print("Metadata Sum: {}".format(sum_metadata))
 
-    data_class = Data(data)
+    data_class.reset()
     root_value = calc_node_value(data_class)
     print("Root Node Value: {}".format(root_value))
