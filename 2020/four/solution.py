@@ -27,36 +27,28 @@ def isValidPassportB(passport):
     
     # validate all
     if not (len(entries['byr']) == 4 and 1920 <= int(entries['byr']) <= 2002):
-        print("Wrong byr: {}".format(entries['byr']))
         return False
 
     if not (len(entries['iyr']) == 4 and 2010 <= int(entries['iyr']) <= 2020):
-        print("Wrong iyr: {}".format(entries['iyr']))
         return False
 
     if not (len(entries['eyr']) == 4 and 2020 <= int(entries['eyr']) <= 2030):
-        print("Wrong eyr: {}".format(entries['eyr']))
         return False
 
     if not (re.search(validHeight, entries['hgt'])):
-        print("Wrong HGT format: {}".format(entries['hgt']))
         return False
 
     if not ((entries['hgt'][-2:] == 'in' and 59 <= int(entries['hgt'][:-2]) <= 76)
             or (entries['hgt'][-2:] == 'cm' and 150 <= int(entries['hgt'][:-2]) <= 193)):
-        print("Wrong HGT value: {}".format(entries['hgt']))
         return False
 
     if not (re.search(validHairColor, entries['hcl'])):
-        print("Wrong HCL: {}".format(entries['hcl'] ))
         return False
     
     if not (entries['ecl'] in validEyeColors):
-        print("Wrong ECL: {}".format(entries['ecl']))
         return False
 
     if not (re.search(validPassportId, entries['pid'])):
-        print("Wrong PID: {}".format(entries['pid']))
         return False
 
     return True
